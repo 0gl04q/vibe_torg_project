@@ -95,8 +95,8 @@ DATABASES = {
     'default': {
         'ENGINE': str(os.getenv('SQL_ENGINE')),
         'NAME': str(os.getenv('MANAGER_POSTGRES_DB')),
-        'USER': str(os.getenv('MANAGER_POSTGRES_USER')),
-        'PASSWORD': str(os.getenv('MANAGER_POSTGRES_PASSWORD')),
+        'USER': str(os.getenv('POSTGRES_USER')),
+        'PASSWORD': str(os.getenv('POSTGRES_PASSWORD')),
         'HOST': str(os.getenv('SQL_HOST')),
         'PORT': str(os.getenv('SQL_PORT'))
     }
