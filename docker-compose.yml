@@ -35,9 +35,11 @@ services:
   db:
     image: postgres:15
     volumes:
+      - ./create_database.sh:/create_database.sh
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+    command: sh -c '/create_database.sh && docker-entrypoint.sh postgres'
 
   memcached:
     image: memcached:1.6.21
