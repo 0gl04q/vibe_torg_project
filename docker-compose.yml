@@ -39,7 +39,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
-    command: sh -c 'chmod +x /db_init.sh && /db_init.sh && docker-entrypoint.sh postgres'
 
   memcached:
     image: memcached:1.6.21
