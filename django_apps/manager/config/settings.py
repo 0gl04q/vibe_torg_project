@@ -170,4 +170,4 @@ CACHES = {
 
 # CSRF settings
 
-CSRF_TRUSTED_ORIGINS = str(os.getenv('CSRF_TRUSTED_ORIGINS')).split('|')
+CSRF_TRUSTED_ORIGINS = str(os.getenv('MANAGER_CSRF_TRUSTED_ORIGINS')).split('|')
