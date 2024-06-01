@@ -58,6 +58,8 @@ WORKDIR $APP_HOME/lending
 
 COPY lending $APP_HOME/lending
 
+USER django
+
 ###########
 # manager #
 ###########
@@ -67,3 +69,5 @@ FROM base as manager
 WORKDIR $APP_HOME/manager
 
 COPY manager $APP_HOME/manager
+
+USER django
