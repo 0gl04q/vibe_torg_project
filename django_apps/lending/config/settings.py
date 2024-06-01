@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': str(os.getenv('SQL_ENGINE')),
-        'NAME': str(os.getenv('POSTGRES_DB')),
+        'NAME': str(os.getenv('LENDING_POSTGRES_DB')),
         'USER': str(os.getenv('POSTGRES_USER')),
         'PASSWORD': str(os.getenv('POSTGRES_PASSWORD')),
         'HOST': str(os.getenv('SQL_HOST')),
