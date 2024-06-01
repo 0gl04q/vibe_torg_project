@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+
+  lending:
+    build:
+      context: ./django_apps
+      dockerfile: Dockerfile
+      target: lending
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./lending/static:/home/django/web/lending/static
+      - ./lending/media:/home/django/web/lending/media
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - memcached
+
+  manager:
+    build:
+      context: ./django_apps
+      dockerfile: Dockerfile
+      target: manager
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./manager/static:/home/django/web/manager/static
+      - ./manager/media:/home/django/web/manager/media
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - memcached
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  memcached:
+    image: memcached:1.6.21
+    ports:
+      - "11211:11211"
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./lending/static:/home/django/web/lending/static
+      - ./lending/media:/home/django/web/lending/media
+      - ./manager/static:/home/django/web/manager/static
+      - ./manager/media:/home/django/web/manager/media
+    ports:
+      - "80:80"
+    depends_on:
+      - lending
+      - manager
+
+  tg_bot:
+    build: ./tg_bot
+    env_file:
+      - ./.env
+    depends_on:
+      - manager
+    restart: always
+
+volumes:
+  postgres_data:

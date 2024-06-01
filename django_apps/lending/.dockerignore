@@ -1,0 +1,6 @@
+venv
+.idea
+db.sqlite3
+.gitignore
+README.md
+.env.dev

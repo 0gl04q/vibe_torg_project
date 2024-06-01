@@ -1,0 +1,29 @@
+{% load order_tags %}
+
+<tr>
+    <td>{{ order.created }}</td>
+    <td>{{ order.buyer }}</td>
+    <td>{{ form.status }}</td>
+    <td>{{ form.price }}</td>
+    <td><a href="{{ order.link }}" target="_blank"> {{ order.link|get_name_by_url }}</a></td>
+
+    <!--  Ячейка кнопок действия -->
+    <td class="align-middle text-center">
+        <!-- Кнопка "Сохранить" -->
+        <button type="submit"
+                class="table-button any-button btn btn-success btn-sm me-2"
+                hx-post="{% url 'update_order_details' order.id %}"
+                hx-target="closest tr"
+                hx-swap="outerHTML">
+            Сохранить
+        </button>
+
+        <!-- Кнопка "Отменить" -->
+        <button class="table-button any-button btn btn-danger btn-sm"
+                hx-get="{% url 'detail_order' order.id %}"
+                hx-target="closest tr"
+                hx-swap="outerHTML">
+            Х
+        </button>
+    </td>
+</tr>

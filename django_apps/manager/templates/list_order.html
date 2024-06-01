@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="form-inline">
+        <table class="table table-bordered text-center mt-2">
+            <thead>
+            <tr>
+                <th scope="col">Дата поступления</th>
+                <th scope="col">Покупатель</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Ссылка</th>
+                <th scope="col">Редактирование</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                {% include 'detail_order.html' %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if is_paginated %}
+            {% include 'includes/pagination.html' %}
+        {% endif %}
+    </form>
+{% endblock %}

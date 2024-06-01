@@ -1,0 +1,22 @@
+<div class="mt-auto">
+    <div class="col bg-light shadow-sm mx-auto text-center mb-2 py-3 bg-dark text-white"
+         style="border-radius: 0 0 8px 8px;">
+
+        <span class="step-links">
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="text-decoration-none text-reset"> < </a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="text-decoration-none text-reset"> > </a>
+            {% endif %}
+
+        </span>
+
+    </div>
+</div>
