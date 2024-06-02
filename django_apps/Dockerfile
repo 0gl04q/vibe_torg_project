@@ -33,8 +33,7 @@ RUN addgroup -S django && adduser -S django -G django
 
 ENV HOME=/home/django
 ENV APP_HOME=/home/django/web
-RUN mkdir -p $APP_HOME/static
-RUN mkdir -p $APP_HOME/media
+
 WORKDIR $APP_HOME
 
 RUN apk update && apk add libpq
@@ -58,6 +57,10 @@ WORKDIR $APP_HOME/lending
 
 COPY lending $APP_HOME/lending
 
+USER root
+
+RUN chown -R django:django $APP_HOME/lending
+
 USER django
 
 ###########
@@ -69,5 +72,9 @@ FROM base as manager
 WORKDIR $APP_HOME/manager
 
 COPY manager $APP_HOME/manager
+
+USER root
+
+RUN chown -R django:django $APP_HOME/manager
 
 USER django
