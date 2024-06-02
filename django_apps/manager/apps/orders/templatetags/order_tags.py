@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter('get_name_by_url')
 def get_name_by_url(url):
-    pattern = r"https://([^/]+)/"
+    pattern = r"https?://([^/]+)/"
 
     match = re.search(pattern, url)
 

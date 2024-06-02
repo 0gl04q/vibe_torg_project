@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 
 MANAGER_HOST = os.getenv('MANAGER_HOST')
 
+
 async def create_buyer(user: types.User) -> bool:
     """ Функция для создания покупателя в базе данных """
 
