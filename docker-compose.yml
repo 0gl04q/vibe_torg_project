@@ -33,9 +33,10 @@ services:
       - memcached
 
   db:
-    image: postgres:15
+    build:
+      context: ./db
+      dockerfile: Dockerfile
     volumes:
-      - ./db_init.sh:/db_init.sh
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env

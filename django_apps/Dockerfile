@@ -58,11 +58,6 @@ WORKDIR $APP_HOME/lending
 
 COPY lending $APP_HOME/lending
 
-USER root
-
-RUN chmod +x ./db_init.sh
-RUN ./db_init.sh
-
 USER django
 
 ###########
@@ -74,10 +69,5 @@ FROM base as manager
 WORKDIR $APP_HOME/manager
 
 COPY manager $APP_HOME/manager
-
-USER root
-
-RUN chmod +x ./db_init.sh
-RUN ./db_init.sh
 
 USER django
