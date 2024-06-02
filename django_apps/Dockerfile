@@ -45,7 +45,6 @@ COPY --from=builder /var/www/VibeTorg/manager-requirements.txt .
 RUN pip install --no-cache /wheels/*
 
 RUN chown -R django:django $APP_HOME
-USER django
 
 ###########
 # lending #
@@ -59,10 +58,6 @@ COPY lending $APP_HOME/lending
 
 USER root
 
-RUN chown -R django:django $APP_HOME/lending
-
-USER django
-
 ###########
 # manager #
 ###########
@@ -74,7 +69,3 @@ WORKDIR $APP_HOME/manager
 COPY manager $APP_HOME/manager
 
 USER root
-
-RUN chown -R django:django $APP_HOME/manager
-
-USER django
