@@ -56,7 +56,7 @@ WORKDIR $APP_HOME/lending
 
 COPY lending $APP_HOME/lending
 
-USER root
+USER django
 
 ###########
 # manager #
@@ -68,4 +68,4 @@ WORKDIR $APP_HOME/manager
 
 COPY manager $APP_HOME/manager
 
-USER root
+USER django
