@@ -9,8 +9,8 @@ services:
       target: lending
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./django_apps/lending/static:/home/django/web/lending/static
-      - ./django_apps/lending/media:/home/django/web/lending/media
+      - lending_static:/home/django/web/lending/static
+      - lending_media:/home/django/web/lending/media
     env_file:
       - ./.env
     depends_on:
@@ -24,8 +24,8 @@ services:
       target: manager
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./django_apps/manager/static:/home/django/web/manager/static
-      - ./django_apps/manager/media:/home/django/web/manager/media
+      - manager_static:/home/django/web/manager/static
+      - manager_media:/home/django/web/manager/media
     env_file:
       - ./.env
     depends_on:
@@ -49,10 +49,10 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - ./django_apps/lending/static:/home/django/web/lending/static
-      - ./django_apps/lending/media:/home/django/web/lending/media
-      - ./django_apps/manager/static:/home/django/web/manager/static
-      - ./django_apps/manager/media:/home/django/web/manager/media
+      - lending_static:/home/django/web/lending/static
+      - lending_media:/home/django/web/lending/media
+      - manager_static:/home/django/web/manager/static
+      - manager_media:/home/django/web/manager/media
     ports:
       - "80:80"
     depends_on:
@@ -69,3 +69,7 @@ services:
 
 volumes:
   postgres_data:
+  lending_static:
+  manager_static:
+  lending_media:
+  manager_media:
