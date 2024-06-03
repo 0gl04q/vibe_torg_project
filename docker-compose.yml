@@ -67,7 +67,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot/ --email rdc_atm@mail.ru --agree-tos --no-eff-email -d vibetorg.ru -d www.vibetorg.ru -d manager.vibetorg.ru
+    command: certonly --webroot --webroot-path=/var/www/certbot/ --email rdc_atm@mail.ru --agree-tos --no-eff-email -d vibetorg.ru -d www.vibetorg.ru
     depends_on:
       - nginx
 
