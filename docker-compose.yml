@@ -53,11 +53,23 @@ services:
       - lending_media:/home/django/web/lending/media
       - manager_static:/home/django/web/manager/static
       - manager_media:/home/django/web/manager/media
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - lending
       - manager
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot/ --email rdc_atm@mail.ru --agree-tos --no-eff-email -d vibetorg.ru -d www.vibetorg.ru -d manager.vibetorg.ru
+    depends_on:
+      - nginx
 
   tg_bot:
     build: ./tg_bot
